@@ -1,6 +1,38 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+#root {
   height: 100vh;
   width: auto;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#generator {
+  flex-grow: 2;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#desc {
+  resize: none;
+}
+
+#cv {
+  flex-grow: 5;
+}
+
+button {
+  background-color: rgb(26, 144, 26);
+  border: none;
+  border-radius: 4px;
+  height: 1.5rem;
 }
