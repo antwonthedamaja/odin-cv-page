@@ -16,11 +16,11 @@ class Generator extends Component {
       company1: '',
       date1: '',
       role1: '',
-      jobCount: 0,
+      jobCount: 1,
       school1: '',
       attended1: '',
       field1: '',
-      schoolCount: 0
+      schoolCount: 1
     };
 
   }
@@ -38,12 +38,12 @@ class Generator extends Component {
 
   renderJobFields = () => {
     const array = [];
-    for (let i = 0; i <= this.state.jobCount; i++) {
-      const element = <div className="field">{"Job " + (i+1)}
-      <input type='text' name={"job" + (i+1)} placeholder='Job title' onChange={this.handleChange}></input>
-      <input type='text' name={"company" + (i+1)} placeholder='Company' onChange={this.handleChange}></input>
-      <input type='text' name={"date" + (i+1)} placeholder='Date' onChange={this.handleChange}></input>
-      <textarea rows="3" name={"role" + (i+1)} placeholder='Role description' onChange={this.handleChange}></textarea>
+    for (let i = 1; i <= this.state.jobCount; i++) {
+      const element = <div className="field">{"Job "+i}
+      <input type='text' name={"job"+i} placeholder='Job title' onChange={this.handleChange}></input>
+      <input type='text' name={"company"+i} placeholder='Company' onChange={this.handleChange}></input>
+      <input type='text' name={"date"+i} placeholder='Date' onChange={this.handleChange}></input>
+      <textarea rows="3" name={"role"+i} placeholder='Role description' onChange={this.handleChange}></textarea>
     </div>;
       array.push(element);
     }
@@ -53,20 +53,20 @@ class Generator extends Component {
   addJob = () => {
     const clone = structuredClone(this.state);
     clone.jobCount += 1;
-    clone['job' + (clone.jobCount+1)];
-    clone['company' + (clone.jobCount+1)];
-    clone['date' + (clone.jobCount+1)];
-    clone['role' + (clone.jobCount+1)];
+    clone['job' + clone.jobCount] = '';
+    clone['company' + clone.jobCount]= '';
+    clone['date' + clone.jobCount] = '';
+    clone['role' + clone.jobCount]= '';
     this.setState(clone);
   }
 
   renderSchoolFields = () => {
     const array = [];
-    for (let i = 0; i <= this.state.schoolCount; i++) {
-      const element = <div className="field">{"School " + (i+1)}
-        <input type='text' name="school" placeholder='Education' onChange={this.handleChange}></input>
-        <input type='text' name="attended" placeholder='Years attended' onChange={this.handleChange}></input>
-        <input type='text' name="field" placeholder='Primary field' onChange={this.handleChange}></input>
+    for (let i = 1; i <= this.state.schoolCount; i++) {
+      const element = <div className="field">{"School "+i}
+        <input type='text' name={"school"+i} placeholder='Education' onChange={this.handleChange}></input>
+        <input type='text' name={"attended"+i} placeholder='Years attended' onChange={this.handleChange}></input>
+        <input type='text' name={"field"+i} placeholder='Primary field' onChange={this.handleChange}></input>
     </div>;
       array.push(element);
     }
@@ -76,15 +76,15 @@ class Generator extends Component {
   addSchool = () => {
     const clone = structuredClone(this.state);
     clone.schoolCount += 1;
-    clone['school' + (clone.jobCount+1)];
-    clone['attended' + (clone.jobCount+1)];
-    clone['field' + (clone.jobCount+1)];
+    clone['school' + clone.jobCount];
+    clone['attended' + clone.jobCount];
+    clone['field' + clone.jobCount];
     this.setState(clone);
   }
 
   render() {
     return (
-      <div id='generator'>
+      <div id='generator'>Personal Info
         <input type='text' name="fname" placeholder='First Name' onChange={this.handleChange}></input>
         <input type='text' name="lname" placeholder='Last Name' onChange={this.handleChange}></input>
         <input type='text' name="title" placeholder='Profession title' onChange={this.handleChange}></input>
@@ -97,6 +97,7 @@ class Generator extends Component {
         <button type='button' onClick={this.addJob}>Add More Experience?</button>
         {this.renderSchoolFields()}
         <button type='button' onClick={this.addSchool}>Add More Education?</button>
+        <div className="spacing">&nbsp;</div>
       </div>
     );
   }
