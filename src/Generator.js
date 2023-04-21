@@ -12,14 +12,14 @@ class Generator extends Component {
       tel: '',
       email: '',
       desc: '',
-      job: '',
-      company: '',
-      date: '',
-      role: '',
+      job1: '',
+      company1: '',
+      date1: '',
+      role1: '',
       jobCount: 0,
-      school: '',
-      attended: '',
-      field: '',
+      school1: '',
+      attended1: '',
+      field1: '',
       schoolCount: 0
     };
 
@@ -43,16 +43,20 @@ class Generator extends Component {
       <input type='text' name={"job" + (i+1)} placeholder='Job title' onChange={this.handleChange}></input>
       <input type='text' name={"company" + (i+1)} placeholder='Company' onChange={this.handleChange}></input>
       <input type='text' name={"date" + (i+1)} placeholder='Date' onChange={this.handleChange}></input>
-      <textarea rows="3" name={"job" + (i+1)} placeholder='Role description' onChange={this.handleChange}></textarea>
+      <textarea rows="3" name={"role" + (i+1)} placeholder='Role description' onChange={this.handleChange}></textarea>
     </div>;
       array.push(element);
     }
     return array
   }
 
-  addJob = (e) => {
+  addJob = () => {
     const clone = structuredClone(this.state);
     clone.jobCount += 1;
+    clone['job' + (clone.jobCount+1)];
+    clone['company' + (clone.jobCount+1)];
+    clone['date' + (clone.jobCount+1)];
+    clone['role' + (clone.jobCount+1)];
     this.setState(clone);
   }
 
@@ -72,6 +76,9 @@ class Generator extends Component {
   addSchool = () => {
     const clone = structuredClone(this.state);
     clone.schoolCount += 1;
+    clone['school' + (clone.jobCount+1)];
+    clone['attended' + (clone.jobCount+1)];
+    clone['field' + (clone.jobCount+1)];
     this.setState(clone);
   }
 
