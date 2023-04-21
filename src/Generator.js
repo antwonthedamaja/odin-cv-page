@@ -15,39 +15,64 @@ class Generator extends Component {
       job: '',
       company: '',
       date: '',
-      jobArray: [],
+      role: '',
+      jobCount: 0,
       school: '',
       attended: '',
       field: '',
-      secSchool: '',
-      secAttended: '',
-      secField: ''
+      schoolCount: 0
     };
 
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = (e) => {
-    this.setState({
-      ...this.state,
-      [e.target.name]: e.target.value
-    })
+    const clone = structuredClone(this.state);
+    clone[e.target.name] = e.target.value;
+    this.setState(clone);
+    console.log(this.state);
   }
 
   infoSubmit = (e) => {
 
   }
 
-  jobSubmit = (e) => {
-
+  renderJobFields = () => {
+    const array = [];
+    for (let i = 0; i <= this.state.jobCount; i++) {
+      const element = <div className="field">{"Job " + (i+1)}
+      <input type='text' name={"job" + (i+1)} placeholder='Job title' onChange={this.handleChange}></input>
+      <input type='text' name={"company" + (i+1)} placeholder='Company' onChange={this.handleChange}></input>
+      <input type='text' name={"date" + (i+1)} placeholder='Date' onChange={this.handleChange}></input>
+      <textarea rows="3" name={"job" + (i+1)} placeholder='Role description' onChange={this.handleChange}></textarea>
+    </div>;
+      array.push(element);
+    }
+    return array
   }
 
-  schoolSubmit = (e) => {
-
+  addJob = (e) => {
+    const clone = structuredClone(this.state);
+    clone.jobCount += 1;
+    this.setState(clone);
   }
 
-  removeJob = (e) => {
+  renderSchoolFields = () => {
+    const array = [];
+    for (let i = 0; i <= this.state.schoolCount; i++) {
+      const element = <div className="field">{"School " + (i+1)}
+        <input type='text' name="school" placeholder='Education' onChange={this.handleChange}></input>
+        <input type='text' name="attended" placeholder='Years attended' onChange={this.handleChange}></input>
+        <input type='text' name="field" placeholder='Primary field' onChange={this.handleChange}></input>
+    </div>;
+      array.push(element);
+    }
+    return array
+  }
 
+  addSchool = () => {
+    const clone = structuredClone(this.state);
+    clone.schoolCount += 1;
+    this.setState(clone);
   }
 
   render() {
@@ -60,20 +85,11 @@ class Generator extends Component {
         <input type='text' name="tel" placeholder='Phone Number' onChange={this.handleChange}></input>
         <input type='text' name="email" placeholder='Email Address' onChange={this.handleChange}></input>
         <textarea rows="3" name="desc" placeholder='Description' onChange={this.handleChange}></textarea>
-        <button type='button' onClick={this.infoSubmit}>Update personal details</button>
-        <input type='text' name="job" placeholder='Job title' onChange={this.handleChange}></input>
-        <input type='text' name="company" placeholder='Company' onChange={this.handleChange}></input>
-        <input type='text' name="date" placeholder='Date' onChange={this.handleChange}></input>
-        <textarea rows="3" name="role" placeholder='Role description' onChange={this.handleChange}></textarea>
-        <button type='button' id="job" onClick={this.jobSubmit}>Add Job</button>
-        <button type='button' id="remove-job" onClick={this.removeJob}>Remove Last Added Job</button>
-        <input type='text' name="school" placeholder='Education' onChange={this.handleChange}></input>
-        <input type='text' name="attended" placeholder='Years attended' onChange={this.handleChange}></input>
-        <input type='text' name="field" placeholder='Primary field' onChange={this.handleChange}></input>
-        <input type='text' name="secSchool" placeholder='Secondary Education' onChange={this.handleChange}></input>
-        <input type='text' name="secAttended" placeholder='Years attended' onChange={this.handleChange}></input>
-        <input type='text' name="secField" placeholder='Primary field' onChange={this.handleChange}></input>
-        <button type='button' onClick={this.schoolSubmit}>Add School(s)</button>
+        <button type='button' onClick={this.infoSubmit}>Update details</button>
+        {this.renderJobFields()}
+        <button type='button' onClick={this.addJob}>Add More Experience?</button>
+        {this.renderSchoolFields()}
+        <button type='button' onClick={this.addSchool}>Add More Education?</button>
       </div>
     );
   }
