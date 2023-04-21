@@ -11,7 +11,17 @@ class App extends Component {
       address: '',
       tel: '',
       email: '',
-      desc: ''
+      desc: '',
+      job: '',
+      company: '',
+      date: '',
+      jobArray: [],
+      school: '',
+      attended: '',
+      field: '',
+      secSchool: '',
+      secAttended: '',
+      secField: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,10 +32,17 @@ class App extends Component {
       ...this.state,
       [e.target.name]: e.target.value
     })
-    console.log(this.state)
+    console.log(this.state);
   }
 
   infoSubmit = (e) => {
+  }
+
+  jobSubmit = (e) => {
+
+  }
+
+  schoolSubmit = (e) => {
 
   }
 
@@ -39,8 +56,20 @@ class App extends Component {
           <input type='text' name="address" placeholder='Street Address' onChange={this.handleChange}></input>
           <input type='text' name="tel" placeholder='Phone Number' onChange={this.handleChange}></input>
           <input type='text' name="email" placeholder='Email Address' onChange={this.handleChange}></input>
-          <textarea rows="5" id="desc" name="desc" placeholder='Description' onChange={this.handleChange}></textarea>
+          <textarea rows="4" name="desc" placeholder='Description' onChange={this.handleChange}></textarea>
           <button type='button' onClick={this.infoSubmit}>Update personal details</button>
+          <input type='text' name="job" placeholder='Job title' onChange={this.handleChange}></input>
+          <input type='text' name="company" placeholder='Company' onChange={this.handleChange}></input>
+          <input type='text' name="date" placeholder='Date' onChange={this.handleChange}></input>
+          <textarea rows="4" name="role" placeholder='Role description' onChange={this.handleChange}></textarea>
+          <button type='button' onClick={this.jobSubmit}>Add Job</button>
+          <input type='text' name="school" placeholder='Education' onChange={this.handleChange}></input>
+          <input type='text' name="attended" placeholder='Years attended' onChange={this.handleChange}></input>
+          <input type='text' name="field" placeholder='Primary field' onChange={this.handleChange}></input>
+          <input type='text' name="secSchool" placeholder='Secondary Education' onChange={this.handleChange}></input>
+          <input type='text' name="secAttended" placeholder='Years attended' onChange={this.handleChange}></input>
+          <input type='text' name="secField" placeholder='Primary field' onChange={this.handleChange}></input>
+          <button type='button' onClick={this.schoolSubmit}>Add School(s)</button>
         </div>
         <div id='cv'></div>
       </div>
