@@ -4,14 +4,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#root {
+#app {
   height: 100vh;
   width: auto;
   display: flex;
 }
 
 #generator {
-  flex-grow: 2;
+  flex: 2 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -25,10 +25,6 @@ input {
 textarea {
   min-height: 1rem;
   resize: none;
-}
-
-#cover {
-  flex-grow: 5;
 }
 
 button {
@@ -49,4 +45,3 @@ button {
   gap: 1rem;
   margin-bottom: .5rem;
 }
-

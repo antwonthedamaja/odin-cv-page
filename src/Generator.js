@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Cover from './component/cover'
+import './style/generator.css';
 
 class Generator extends Component {
   constructor() {
@@ -23,6 +25,7 @@ class Generator extends Component {
       schoolCount: 1
     };
 
+    this.cvProps = {};
   }
 
   handleChange = (e) => {
@@ -32,8 +35,9 @@ class Generator extends Component {
     console.log(this.state);
   }
 
-  infoSubmit = (e) => {
-
+  infoSubmit = () => {
+    this.cvProps = structuredClone(this.state);
+    this.forceUpdate();
   }
 
   renderJobFields = () => {
@@ -70,34 +74,38 @@ class Generator extends Component {
     </div>;
       array.push(element);
     }
-    return array
+    return array;
   }
 
   addSchool = () => {
     const clone = structuredClone(this.state);
     clone.schoolCount += 1;
-    clone['school' + clone.jobCount];
-    clone['attended' + clone.jobCount];
-    clone['field' + clone.jobCount];
+    clone['school' + clone.schoolCount];
+    clone['attended' + clone.schoolCount];
+    clone['field' + clone.schoolCount];
     this.setState(clone);
   }
 
   render() {
+
     return (
-      <div id='generator'>Personal Info
-        <input type='text' name="fname" placeholder='First Name' onChange={this.handleChange}></input>
-        <input type='text' name="lname" placeholder='Last Name' onChange={this.handleChange}></input>
-        <input type='text' name="title" placeholder='Profession title' onChange={this.handleChange}></input>
-        <input type='text' name="address" placeholder='Street Address' onChange={this.handleChange}></input>
-        <input type='text' name="tel" placeholder='Phone Number' onChange={this.handleChange}></input>
-        <input type='text' name="email" placeholder='Email Address' onChange={this.handleChange}></input>
-        <textarea rows="3" name="desc" placeholder='Description' onChange={this.handleChange}></textarea>
-        <button type='button' onClick={this.infoSubmit}>Update details</button>
-        {this.renderJobFields()}
-        <button type='button' onClick={this.addJob}>Add More Experience?</button>
-        {this.renderSchoolFields()}
-        <button type='button' onClick={this.addSchool}>Add More Education?</button>
-        <div className="spacing">&nbsp;</div>
+      <div id="app">
+        <div id='generator'>Personal Info
+          <input type='text' name="fname" placeholder='First Name' onChange={this.handleChange}></input>
+          <input type='text' name="lname" placeholder='Last Name' onChange={this.handleChange}></input>
+          <input type='text' name="title" placeholder='Profession title' onChange={this.handleChange}></input>
+          <input type='text' name="address" placeholder='Street Address' onChange={this.handleChange}></input>
+          <input type='text' name="tel" placeholder='Phone Number' onChange={this.handleChange}></input>
+          <input type='text' name="email" placeholder='Email Address' onChange={this.handleChange}></input>
+          <textarea rows="3" name="desc" placeholder='Description' onChange={this.handleChange}></textarea>
+          <button type='button' onClick={this.infoSubmit}>Update details</button>
+          {this.renderJobFields()}
+          <button type='button' onClick={this.addJob}>Add More Experience?</button>
+          {this.renderSchoolFields()}
+          <button type='button' onClick={this.addSchool}>Add More Education?</button>
+          <div className="spacing">&nbsp;</div>
+        </div>
+      <Cover cvProps={this.cvProps} />
       </div>
     );
   }
