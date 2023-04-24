@@ -25,14 +25,13 @@ class Generator extends Component {
       schoolCount: 1
     };
 
-    this.cvProps = {};
+    this.cvProps = structuredClone(this.state);
   }
 
   handleChange = (e) => {
     const clone = structuredClone(this.state);
     clone[e.target.name] = e.target.value;
     this.setState(clone);
-    console.log(this.state);
   }
 
   infoSubmit = () => {
@@ -43,11 +42,11 @@ class Generator extends Component {
   renderJobFields = () => {
     const array = [];
     for (let i = 1; i <= this.state.jobCount; i++) {
-      const element = <div className="field">{"Job "+i}
-      <input type='text' name={"job"+i} placeholder='Job title' onChange={this.handleChange}></input>
-      <input type='text' name={"company"+i} placeholder='Company' onChange={this.handleChange}></input>
-      <input type='text' name={"date"+i} placeholder='Date' onChange={this.handleChange}></input>
-      <textarea rows="3" name={"role"+i} placeholder='Role description' onChange={this.handleChange}></textarea>
+      const element = <div className="field">{'Job ' + i}
+      <input type='text' name={'job' + i} placeholder='Job title' onChange={this.handleChange}></input>
+      <input type='text' name={'company' + i} placeholder='Company' onChange={this.handleChange}></input>
+      <input type='text' name={'date' + i} placeholder='Date' onChange={this.handleChange}></input>
+      <textarea rows="3" name={'role' + i} placeholder='Role description' onChange={this.handleChange}></textarea>
     </div>;
       array.push(element);
     }
@@ -58,19 +57,19 @@ class Generator extends Component {
     const clone = structuredClone(this.state);
     clone.jobCount += 1;
     clone['job' + clone.jobCount] = '';
-    clone['company' + clone.jobCount]= '';
+    clone['company' + clone.jobCount] = '';
     clone['date' + clone.jobCount] = '';
-    clone['role' + clone.jobCount]= '';
+    clone['role' + clone.jobCount] = '';
     this.setState(clone);
   }
 
   renderSchoolFields = () => {
     const array = [];
     for (let i = 1; i <= this.state.schoolCount; i++) {
-      const element = <div className="field">{"School "+i}
-        <input type='text' name={"school"+i} placeholder='Education' onChange={this.handleChange}></input>
-        <input type='text' name={"attended"+i} placeholder='Years attended' onChange={this.handleChange}></input>
-        <input type='text' name={"field"+i} placeholder='Primary field' onChange={this.handleChange}></input>
+      const element = <div className="field">{'School ' + i}
+        <input type='text' name={'school' + i} placeholder='School' onChange={this.handleChange}></input>
+        <input type='text' name={'attended' + i} placeholder='Years attended' onChange={this.handleChange}></input>
+        <input type='text' name={'field' + i} placeholder='Primary field' onChange={this.handleChange}></input>
     </div>;
       array.push(element);
     }
@@ -80,9 +79,9 @@ class Generator extends Component {
   addSchool = () => {
     const clone = structuredClone(this.state);
     clone.schoolCount += 1;
-    clone['school' + clone.schoolCount];
-    clone['attended' + clone.schoolCount];
-    clone['field' + clone.schoolCount];
+    clone['school' + clone.schoolCount] = '';
+    clone['attended' + clone.schoolCount] = '';
+    clone['field' + clone.schoolCount] = '';
     this.setState(clone);
   }
 
@@ -98,14 +97,14 @@ class Generator extends Component {
           <input type='text' name="tel" placeholder='Phone Number' onChange={this.handleChange}></input>
           <input type='text' name="email" placeholder='Email Address' onChange={this.handleChange}></input>
           <textarea rows="3" name="desc" placeholder='Description' onChange={this.handleChange}></textarea>
-          <button type='button' onClick={this.infoSubmit}>Update details</button>
+          <button type='button' onClick={this.infoSubmit}>Update CV</button>
           {this.renderJobFields()}
-          <button type='button' onClick={this.addJob}>Add More Experience?</button>
+          <button type='button' onClick={this.addJob}>Add Additional Experience</button>
           {this.renderSchoolFields()}
-          <button type='button' onClick={this.addSchool}>Add More Education?</button>
+          <button type='button' onClick={this.addSchool}>Add Additional Education</button>
           <div className="spacing">&nbsp;</div>
         </div>
-      <Cover cvProps={this.cvProps} />
+        <Cover cvProps={this.cvProps} />
       </div>
     );
   }
