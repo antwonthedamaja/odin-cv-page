@@ -87,12 +87,12 @@
 }
 
 #overview {
-    flex-basis: 15%;
+    flex-basis: 9%;
     gap: .50rem;
 }
 
 #experience {
-    flex-basis: 85%;
+    flex-basis: 100%;
     gap: 1rem;
 }
 
