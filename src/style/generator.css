@@ -44,3 +44,7 @@ button {
   gap: 1rem;
   margin-bottom: .5rem;
 }
+
+#desc {
+  margin-bottom: .5rem;
+}
