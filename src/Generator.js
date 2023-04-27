@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Cover from './component/cover'
+import Cover from './component/Cover';
 import './style/generator.css';
 
 class Generator extends Component {
@@ -104,7 +104,7 @@ class Generator extends Component {
           <button type='button' onClick={this.addSchool}>Add Additional Education</button>
           <div className="spacing">&nbsp;</div>
         </div>
-        <Cover cvProps={this.cvProps} />
+        <Cover props={this.cvProps} />
       </div>
     );
   }
